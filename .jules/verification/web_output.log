@@ -1,0 +1,15 @@
+
+> app-zen-breather@1.0.0 web /app
+> expo start --web
+
+Starting project at /app
+Starting Metro Bundler
+The following packages should be updated for best compatibility with the installed expo version:
+  @types/jest@30.0.0 - expected version: 29.5.14
+Your project may not work correctly until you install the expected versions of the packages.
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+Web ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Web ./index.ts ▓▓▓▓▓▓▓▓▓░░░░░░░ 59.5% (136/184)
+Web Bundled 6610ms index.ts (292 modules)
+ LOG  [web] Logs will appear in the browser console

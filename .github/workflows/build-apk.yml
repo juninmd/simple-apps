@@ -17,7 +17,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -26,10 +31,10 @@ jobs:
           java-version: '17'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Expo Prebuild
-        run: npx expo prebuild --platform android
+        run: pnpm expo prebuild --platform android
 
       - name: Build APK with Gradle
         run: |
