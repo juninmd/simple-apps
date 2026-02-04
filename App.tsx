@@ -1,7 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Slider, TouchableOpacity, Clipboard, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import Slider from '@react-native-community/slider';
+import * as Clipboard from 'expo-clipboard';
 
+/**
+ * Main application component.
+ * Renders the color palette generator interface.
+ */
 export default function App() {
   const [r, setR] = useState(100);
   const [g, setG] = useState(150);
@@ -9,14 +15,22 @@ export default function App() {
 
   const color = `rgb(${r}, ${g}, ${b})`;
 
+  /**
+   * Converts a decimal number to a 2-digit hex string.
+   * @param c - The number to convert (0-255).
+   * @returns The hex string.
+   */
   const toHex = (c: number) => {
     const hex = c.toString(16);
     return hex.length === 1 ? '0' + hex : hex;
   };
   const hexColor = `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 
-  const copyToClipboard = () => {
-    Clipboard.setString(hexColor);
+  /**
+   * Copies the current hex color to the clipboard.
+   */
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(hexColor);
     Alert.alert("Copied!", `${hexColor} copied to clipboard. [Ad: Design Course]`);
   };
 
@@ -34,13 +48,43 @@ export default function App() {
 
       <View style={styles.controls}>
         <Text style={styles.label}>R: {r}</Text>
-        <Slider style={styles.slider} minimumValue={0} maximumValue={255} step={1} value={r} onValueChange={setR} minimumTrackTintColor="red" thumbTintColor="red" />
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={255}
+          step={1}
+          value={r}
+          onValueChange={setR}
+          minimumTrackTintColor="red"
+          thumbTintColor="red"
+          accessibilityLabel="Red Slider"
+        />
 
         <Text style={styles.label}>G: {g}</Text>
-        <Slider style={styles.slider} minimumValue={0} maximumValue={255} step={1} value={g} onValueChange={setG} minimumTrackTintColor="green" thumbTintColor="green" />
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={255}
+          step={1}
+          value={g}
+          onValueChange={setG}
+          minimumTrackTintColor="green"
+          thumbTintColor="green"
+          accessibilityLabel="Green Slider"
+        />
 
         <Text style={styles.label}>B: {b}</Text>
-        <Slider style={styles.slider} minimumValue={0} maximumValue={255} step={1} value={b} onValueChange={setB} minimumTrackTintColor="blue" thumbTintColor="blue" />
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={255}
+          step={1}
+          value={b}
+          onValueChange={setB}
+          minimumTrackTintColor="blue"
+          thumbTintColor="blue"
+          accessibilityLabel="Blue Slider"
+        />
       </View>
 
       <View style={styles.ad}>
