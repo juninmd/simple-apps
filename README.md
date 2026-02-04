@@ -35,7 +35,7 @@ Scan the QR code with Expo Go to run on your device.
 - `pnpm start`: Start Expo
 - `pnpm android`: Run on Android emulator
 - `pnpm ios`: Run on iOS simulator
-- `pnpm test`: Run tests (coming soon)
+- `pnpm test`: Run tests
 
 ## built with
 - [React Native](https://reactnative.dev/)
