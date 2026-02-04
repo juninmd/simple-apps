@@ -1,14 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Animated } from 'react-native';
 
+/**
+ * Main application component for Decision Roulette.
+ * Displays a spinning wheel that randomly selects an option.
+ */
 export default function App() {
   const [result, setResult] = useState('?');
   const [spinning, setSpinning] = useState(false);
-  const spinValue = new Animated.Value(0);
+  // Use useRef to maintain the Animated.Value instance across re-renders
+  const spinValue = useRef(new Animated.Value(0)).current;
 
   const options = ['Yes', 'No', 'Maybe', 'Try Again', 'Definitely', 'No Way'];
 
+  /**
+   * Initiates the spinning animation and determines the result.
+   */
   const spin = () => {
     if (spinning) return;
     setSpinning(true);
@@ -48,7 +56,7 @@ export default function App() {
       </TouchableOpacity>
 
       <View style={styles.ad}>
-        <Text>[Ad: Online Casino]</Text>
+        <Text>[Ad Space]</Text>
       </View>
       <StatusBar style="auto" />
     </View>
