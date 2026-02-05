@@ -136,7 +136,7 @@ exports[`App renders correctly 1`] = `
     }
   >
     <Text>
-      [Ad: Online Casino]
+      [Ad Space]
     </Text>
   </View>
 </View>
