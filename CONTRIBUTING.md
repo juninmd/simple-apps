@@ -18,8 +18,8 @@ We love your input! We want to make contributing to this project as easy and tra
 ## Any contributions you make will be under the MIT Software License
 In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using Github's [issue tracker](../issues)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](../issues/new); it's that easy!
+## Report bugs using Github's [issue tracker](https://github.com/USERNAME/REPO/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
 **Great Bug Reports** tend to have:

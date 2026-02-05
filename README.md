@@ -17,7 +17,7 @@ A simple, fun React Native application to help you make decisions! Spin the whee
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPO].git
+    git clone <repository-url>
     ```
 2.  Install dependencies:
     ```bash
@@ -35,7 +35,7 @@ Scan the QR code with Expo Go to run on your device.
 - `pnpm start`: Start Expo
 - `pnpm android`: Run on Android emulator
 - `pnpm ios`: Run on iOS simulator
-- `pnpm test`: Run tests
+- `pnpm test`: Run tests (coming soon)
 
 ## built with
 - [React Native](https://reactnative.dev/)
