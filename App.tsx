@@ -1,14 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, FlatList } from 'react-native';
 import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
 
 export default function App() {
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const [recordings, setRecordings] = useState<{ sound: Audio.Sound | null, duration: string, file: string }[]>([]);
   const [message, setMessage] = useState('');
 
+  // Ref to keep track of recordings for cleanup on unmount
+  const recordingsRef = useRef(recordings);
+  recordingsRef.current = recordings;
+
+  // Cleanup sounds when component unmounts
+  useEffect(() => {
+    return () => {
+      if (recordingsRef.current) {
+        recordingsRef.current.forEach(async (rec) => {
+            if (rec.sound) {
+                try {
+                    await rec.sound.unloadAsync();
+                } catch (e) {
+                    console.log('Error unloading sound', e);
+                }
+            }
+        });
+      }
+    };
+  }, []);
+
+  /**
+   * Starts recording audio.
+   */
   async function startRecording() {
     try {
       const permission = await Audio.requestPermissionsAsync();
@@ -25,37 +48,54 @@ export default function App() {
     }
   }
 
+  /**
+   * Stops the current recording and saves it.
+   */
   async function stopRecording() {
     if (!recording) return;
     setRecording(null);
-    await recording.stopAndUnloadAsync();
-    const uri = recording.getURI();
-    setMessage('Stopped recording');
-    if (uri) {
-      const { sound, status } = await recording.createNewLoadedSoundAsync();
-      const duration = getDurationFormatted((status as any).durationMillis);
-      setRecordings([...recordings, { sound, duration, file: uri }]);
-      Alert.alert("Saved", "Voice note saved! [Ad: Cloud Storage]");
+    try {
+        await recording.stopAndUnloadAsync();
+        const uri = recording.getURI();
+        setMessage('Stopped recording');
+        if (uri) {
+        const { sound, status } = await recording.createNewLoadedSoundAsync();
+        const durationMillis = (status as any).durationMillis || 0;
+        const duration = getDurationFormatted(durationMillis);
+        setRecordings([...recordings, { sound, duration, file: uri }]);
+        Alert.alert("Saved", "Voice note saved! [Ad: Cloud Storage]");
+        }
+    } catch (error) {
+        console.error('Failed to stop recording', error);
     }
   }
 
+  /**
+   * Formats milliseconds into MM:SS string.
+   * @param millis Duration in milliseconds
+   */
   function getDurationFormatted(millis: number) {
     const minutes = Math.floor(millis / 1000 / 60);
     const seconds = Math.round((millis / 1000) % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 
-  function getRecordingLines() {
-    return recordings.map((recordingLine, index) => {
-      return (
-        <View key={index} style={styles.row}>
-          <Text style={styles.fill}>Recording {index + 1} - {recordingLine.duration}</Text>
-          <TouchableOpacity style={styles.playBtn} onPress={() => recordingLine.sound?.replayAsync()}>
-            <Text style={styles.btnText}>Play</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    });
+  /**
+   * Deletes a recording at the specified index.
+   * @param index Index of the recording to delete
+   */
+  async function deleteRecording(index: number) {
+      const recordingToDelete = recordings[index];
+      if (recordingToDelete.sound) {
+          try {
+            await recordingToDelete.sound.unloadAsync();
+          } catch (error) {
+              console.error("Error unloading sound during delete:", error);
+          }
+      }
+      const updatedRecordings = [...recordings];
+      updatedRecordings.splice(index, 1);
+      setRecordings(updatedRecordings);
   }
 
   return (
@@ -76,9 +116,14 @@ export default function App() {
         renderItem={({ item, index }) => (
           <View style={styles.row}>
             <Text style={styles.fill}>Note #{index + 1} ({item.duration})</Text>
-            <TouchableOpacity style={styles.playBtn} onPress={() => item.sound?.replayAsync()}>
-              <Text style={styles.btnText}>Play</Text>
-            </TouchableOpacity>
+            <View style={styles.actions}>
+                <TouchableOpacity style={styles.playBtn} onPress={() => item.sound?.replayAsync()}>
+                <Text style={styles.btnText}>Play</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteRecording(index)}>
+                <Text style={styles.btnText}>Delete</Text>
+                </TouchableOpacity>
+            </View>
           </View>
         )}
         style={styles.list}
@@ -102,7 +147,9 @@ const styles = StyleSheet.create({
   list: { width: '90%' },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, backgroundColor: '#fff', borderRadius: 10, marginBottom: 10 },
   fill: { flex: 1, fontSize: 16 },
-  playBtn: { paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#607d8b', borderRadius: 5 },
+  actions: { flexDirection: 'row' },
+  playBtn: { paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#607d8b', borderRadius: 5, marginRight: 10 },
+  deleteBtn: { paddingVertical: 10, paddingHorizontal: 20, backgroundColor: '#e53935', borderRadius: 5 },
   btnText: { color: '#fff' },
   ad: { width: '100%', padding: 15, backgroundColor: '#cfd8dc', alignItems: 'center', marginTop: 10 }
 });
