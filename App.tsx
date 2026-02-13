@@ -3,6 +3,11 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Animated } from 'react-native';
 
 /**
+ * List of possible outcomes for the roulette.
+ */
+const OPTIONS = ['Yes', 'No', 'Maybe', 'Try Again', 'Definitely', 'No Way'];
+
+/**
  * Main application component for Decision Roulette.
  * Displays a spinning wheel that randomly selects an option.
  */
@@ -11,8 +16,6 @@ export default function App() {
   const [spinning, setSpinning] = useState(false);
   // Use useRef to maintain the Animated.Value instance across re-renders
   const spinValue = useRef(new Animated.Value(0)).current;
-
-  const options = ['Yes', 'No', 'Maybe', 'Try Again', 'Definitely', 'No Way'];
 
   /**
    * Initiates the spinning animation and determines the result.
@@ -27,7 +30,7 @@ export default function App() {
       duration: 2000,
       useNativeDriver: true,
     }).start(() => {
-      const random = options[Math.floor(Math.random() * options.length)];
+      const random = OPTIONS[Math.floor(Math.random() * OPTIONS.length)];
       setResult(random);
       setSpinning(false);
       spinValue.setValue(0);
