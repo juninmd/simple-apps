@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RouletteWheel renders correctly 1`] = `
+<View
+  style={
+    {
+      "marginBottom": 30,
+    }
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#ff5722",
+        "borderColor": "#fff",
+        "borderRadius": 100,
+        "borderWidth": 5,
+        "height": 200,
+        "justifyContent": "center",
+        "transform": [
+          {
+            "rotate": "0deg",
+          },
+        ],
+        "width": 200,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 80,
+        }
+      }
+    >
+      🎡
+    </Text>
+  </View>
+</View>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultDisplay renders correctly with initial state 1`] = `
+<Text
+  style={
+    {
+      "color": "#ffca28",
+      "fontSize": 40,
+      "fontWeight": "bold",
+      "height": 50,
+      "marginBottom": 50,
+    }
+  }
+>
+  ?
+</Text>
+`;
