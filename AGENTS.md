@@ -16,3 +16,7 @@ See `ROADMAP.md` for the current project status and future plans.
 ## Sentinel Log
 
 - **Linting & Formatting**: Implemented ESLint + Prettier configuration.
+
+## Release-Bot Log
+
+- **CI/CD Setup**: Generated GitHub Actions workflow (`main.yml`) with automated linting, testing, Android APK building, and semantic releases.

@@ -14,6 +14,9 @@
 - **Antigravity Audit**:
   - **Refactor**: Extracted `OPTIONS` constant in `App.tsx` to improve performance and readability.
   - **Documentation**: Established `ROADMAP.md` and updated `AGENTS.md` to streamline project tracking.
+- **CI/CD Integration (Release-Bot)**:
+  - **Pipeline**: Configured `main.yml` with setup, lint, test, build, and release steps.
+  - **Releases**: Integrated `semantic-release` for automated versioning and changelog generation.
 
 ## Context
 
