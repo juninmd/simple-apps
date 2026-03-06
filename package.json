@@ -20,10 +20,14 @@
     "react-native-web": "^0.21.2"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^13.1.5",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.12",
     "@types/react": "~19.1.0",
+    "babel-preset-expo": "^55.0.10",
     "eslint": "^8.57.1",
     "eslint-config-expo": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
@@ -32,12 +36,40 @@
     "jest-expo": "^54.0.17",
     "prettier": "^3.8.1",
     "react-test-renderer": "19.1.0",
+    "semantic-release": "^25.0.3",
     "typescript": "~5.9.2"
   },
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!.pnpm|((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+    ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ]
   },
   "private": true
