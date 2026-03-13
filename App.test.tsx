@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react-native';
+import { render, fireEvent, screen, act } from '@testing-library/react-native';
 import App from './App';
 
 describe('App', () => {
@@ -14,10 +14,20 @@ describe('App', () => {
     expect(screen.getByText('SPIN')).toBeTruthy();
   });
 
-  it('changes text when spinning', () => {
-    render(<App />);
+  it('changes text when spinning', async () => {
+    jest.useFakeTimers({ legacyFakeTimers: true });
+    const { unmount } = render(<App />);
     const button = screen.getByText('SPIN');
+
     fireEvent.press(button);
     expect(screen.getByText('...')).toBeTruthy();
+
+    // Fast-forward timers to complete the animation
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    unmount();
+    jest.useRealTimers();
   });
 });
