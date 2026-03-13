@@ -15,6 +15,7 @@ See `ROADMAP.md` for the current project status and future plans.
 
 ## Sentinel Log
 
+- **Testing**: Fixed `App.test.tsx` React `act(...)` console warnings via fake timers and `unmount()`.
 - **Linting & Formatting**: Implemented ESLint + Prettier configuration.
 
 ## Release-Bot Log
