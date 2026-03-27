@@ -2,6 +2,8 @@
 
 exports[`GameControls renders correctly 1`] = `
 <View
+  accessibilityLabel="Spin the roulette wheel"
+  accessibilityRole="button"
   accessibilityState={
     {
       "busy": undefined,

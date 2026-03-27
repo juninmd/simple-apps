@@ -43,7 +43,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Decision Roulette 🎯</Text>
+      <Text style={styles.title} accessibilityRole="header">
+        Decision Roulette 🎯
+      </Text>
 
       <RouletteWheel spinValue={spinValue} />
 

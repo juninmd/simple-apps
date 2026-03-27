@@ -20,7 +20,14 @@ interface GameControlsProps {
  */
 export default function GameControls({ onSpin, disabled }: GameControlsProps) {
   return (
-    <TouchableOpacity style={styles.btn} onPress={onSpin} disabled={disabled}>
+    <TouchableOpacity
+      style={styles.btn}
+      onPress={onSpin}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel="Spin the roulette wheel"
+      accessibilityState={{ disabled }}
+    >
       <Text style={styles.btnText}>SPIN</Text>
     </TouchableOpacity>
   );

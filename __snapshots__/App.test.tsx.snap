@@ -12,6 +12,7 @@ exports[`App renders correctly 1`] = `
   }
 >
   <Text
+    accessibilityRole="header"
     style={
       {
         "color": "#fff",
@@ -31,6 +32,9 @@ exports[`App renders correctly 1`] = `
     }
   >
     <View
+      accessibilityLabel="Roulette wheel"
+      accessibilityRole="image"
+      accessible={true}
       collapsable={false}
       style={
         {
@@ -62,6 +66,8 @@ exports[`App renders correctly 1`] = `
     </View>
   </View>
   <Text
+    accessibilityLiveRegion="polite"
+    accessible={true}
     style={
       {
         "color": "#ffca28",
@@ -75,6 +81,8 @@ exports[`App renders correctly 1`] = `
     ?
   </Text>
   <View
+    accessibilityLabel="Spin the roulette wheel"
+    accessibilityRole="button"
     accessibilityState={
       {
         "busy": undefined,
