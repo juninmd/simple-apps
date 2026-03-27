@@ -15,7 +15,11 @@ interface ResultDisplayProps {
  * @returns {JSX.Element} The rendered component.
  */
 export default function ResultDisplay({ result }: ResultDisplayProps) {
-  return <Text style={styles.result}>{result}</Text>;
+  return (
+    <Text style={styles.result} accessible={true} accessibilityLiveRegion="polite">
+      {result}
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({

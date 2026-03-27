@@ -2,6 +2,8 @@
 
 exports[`ResultDisplay renders correctly with initial state 1`] = `
 <Text
+  accessibilityLiveRegion="polite"
+  accessible={true}
   style={
     {
       "color": "#ffca28",

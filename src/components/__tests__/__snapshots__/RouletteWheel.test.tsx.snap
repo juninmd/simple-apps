@@ -9,6 +9,9 @@ exports[`RouletteWheel renders correctly 1`] = `
   }
 >
   <View
+    accessibilityLabel="Roulette wheel"
+    accessibilityRole="image"
+    accessible={true}
     collapsable={false}
     style={
       {

@@ -22,7 +22,12 @@ export default function RouletteWheel({ spinValue }: RouletteWheelProps) {
 
   return (
     <View style={styles.wheelContainer}>
-      <Animated.View style={[styles.wheel, { transform: [{ rotate: spinInterpolate }] }]}>
+      <Animated.View
+        style={[styles.wheel, { transform: [{ rotate: spinInterpolate }] }]}
+        accessible={true}
+        accessibilityRole="image"
+        accessibilityLabel="Roulette wheel"
+      >
         <Text style={styles.wheelText}>🎡</Text>
       </Animated.View>
     </View>
