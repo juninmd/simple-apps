@@ -21,3 +21,4 @@ See `ROADMAP.md` for the current project status and future plans.
 ## Release-Bot Log
 
 - **CI/CD Setup**: Generated GitHub Actions workflow (`main.yml`) with automated linting, testing, Android APK building, and semantic releases.
+- **E2E Testing**: Set up Maestro test flow in `.maestro/app.yaml` and integrated the `e2e` run script into `package.json`.

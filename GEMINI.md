@@ -14,6 +14,7 @@
 - **Antigravity Audit**:
   - **Refactor**: Extracted `OPTIONS` constant in `App.tsx` to improve performance and readability.
   - **Tests**: Resolved React `act(...)` console warnings during tests in `App.test.tsx` by using fake timers, cleaning up components with `unmount`, and fast-forwarding timers.
+  - **E2E Testing**: Implemented basic Maestro E2E test script (`.maestro/app.yaml`) to automate interactions and verify results.
   - **Audit**: Verified component sizes are below 150 lines.
   - **Documentation**: Established `ROADMAP.md` and updated `AGENTS.md` to streamline project tracking.
 - **CI/CD Integration (Release-Bot)**:
