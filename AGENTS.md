@@ -15,6 +15,7 @@ See `ROADMAP.md` for the current project status and future plans.
 
 ## Sentinel Log
 
+- **Audit**: Initiated Antigravity Audit protocol. Scanned ROADMAP.md, GEMINI.md, and App.tsx. Verified codebase size limits (<150 loc). `App.tsx` has already been refactored.
 - **Testing**: Fixed `App.test.tsx` React `act(...)` console warnings via fake timers and `unmount()`.
 - **Linting & Formatting**: Implemented ESLint + Prettier configuration.
 
