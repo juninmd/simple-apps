@@ -1,30 +1,30 @@
 appId: com.anonymous.appdecisionroulette
 ---
 - launchApp
-- assertVisible: "Decision Roulette 🎯"
-- tapOn: "SPIN THE WHEEL!"
-- assertVisible: "..."
+- assertVisible: 'Decision Roulette 🎯'
+- tapOn: 'SPIN THE WHEEL!'
+- assertVisible: '...'
 - extendedWaitUntil:
-    visible: "Yes"
+    visible: 'Yes'
     timeout: 3000
     optional: true
 - extendedWaitUntil:
-    visible: "No"
+    visible: 'No'
     timeout: 3000
     optional: true
 - extendedWaitUntil:
-    visible: "Maybe"
+    visible: 'Maybe'
     timeout: 3000
     optional: true
 - extendedWaitUntil:
-    visible: "Try Again"
+    visible: 'Try Again'
     timeout: 3000
     optional: true
 - extendedWaitUntil:
-    visible: "Definitely"
+    visible: 'Definitely'
     timeout: 3000
     optional: true
 - extendedWaitUntil:
-    visible: "No Way"
+    visible: 'No Way'
     timeout: 3000
     optional: true

@@ -2,11 +2,11 @@
 
 ## 📝 Todo
 
-- [ ] **Refactoring**: Separate `App.tsx` into smaller components (Wheel, Controls, Result).
-
 ## 🚧 In Progress
 
 ## ✅ Done
+
+- [x] **Refactoring**: Separate `App.tsx` into smaller components (Wheel, Controls, Result).
 
 - [x] **End-to-End Testing**: Implement Maestro for E2E testing.
 - [x] **Accessibility**: Add ARIA labels and improve accessibility for screen readers.

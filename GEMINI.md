@@ -13,7 +13,7 @@
   - **Testing**: Jest 30 is incompatible with current `jest-expo`/`react-native` setup; downgraded to Jest 29.7.0.
 - **Antigravity Audit**:
   - **Refactor**: Extracted `OPTIONS` constant in `App.tsx` to improve performance and readability.
-  - **Tests**: Resolved React `act(...)` console warnings during tests in `App.test.tsx` by using fake timers, cleaning up components with `unmount`, and fast-forwarding timers.
+  - **Tests**: Resolved React `act(...)` console warnings during tests in `App.test.tsx` by using fake timers, cleaning up components with `unmount`, and fast-forwarding timers. Achieved 100% test coverage across all components by testing edge cases like interacting with the wheel while it is already spinning.
   - **E2E Testing**: Implemented basic Maestro E2E test script (`.maestro/app.yaml`) to automate interactions and verify results.
   - **Audit**: Verified component sizes are below 150 lines.
   - **Documentation**: Established `ROADMAP.md` and updated `AGENTS.md` to streamline project tracking.

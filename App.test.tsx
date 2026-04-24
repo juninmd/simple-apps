@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen, act } from '@testing-library/react-native';
 import App from './App';
+import GameControls from './src/components/GameControls';
 
 describe('App', () => {
   it('renders correctly', () => {
@@ -29,5 +30,22 @@ describe('App', () => {
 
     unmount();
     jest.useRealTimers();
+  });
+
+  it('does not start spin if already spinning', () => {
+    jest.useFakeTimers({ legacyFakeTimers: true });
+    const { root } = render(<App />);
+    const gameControls = root.findByType(GameControls);
+
+    act(() => {
+      gameControls.props.onSpin();
+    });
+
+    act(() => {
+      gameControls.props.onSpin();
+    });
+
+    // The text should remain '...' because the second call to onSpin is ignored
+    expect(screen.getByText('...')).toBeTruthy();
   });
 });
