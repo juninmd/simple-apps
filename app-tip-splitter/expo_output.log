@@ -1,0 +1,12 @@
+Starting project at /app
+Starting Metro Bundler
+The following packages should be updated for best compatibility with the installed expo version:
+  @types/jest@30.0.0 - expected version: 29.5.14
+  jest@30.2.0 - expected version: ~29.7.0
+Your project may not work correctly until you install the expected versions of the packages.
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+Web ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Web ./index.ts ▓▓▓▓▓▓▓▓▓▓▓░░░░░ 70.7% (148/176)
+Web Bundled 5860ms index.ts (215 modules)
+ LOG  [web] Logs will appear in the browser console
