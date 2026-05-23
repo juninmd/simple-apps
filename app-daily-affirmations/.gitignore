@@ -1,0 +1,39 @@
+# Node
+/node_modules
+
+# Xcode
+/ios/build
+/ios/Pods
+*.xcodeproj
+*.xcworkspace
+
+# Android
+/android/build
+/android/app/build
+/android/.gradle
+/android/app/src/main/assets/index.android.bundle
+*.keystore
+
+# Metro
+/metro-cache
+
+# Jest
+/coverage
+
+# BUCK
+/buck-out
+
+# Gem
+/Gemfile.lock
+
+# Yarn
+/yarn.lock
+
+# npm
+/package-lock.json
+
+# IntelliJ
+.idea
+
+# Visual Studio Code
+.vscode

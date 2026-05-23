@@ -1,0 +1,30 @@
+{
+    "name":  "app-daily-affirmations",
+    "displayName":  "Daily Affirmations",
+    "expo":  {
+                 "slug":  "app-daily-affirmations",
+                 "ios":  {
+                             "supportsTablet":  true
+                         },
+                 "web":  {
+                             "favicon":  "./assets/favicon.png"
+                         },
+                 "version":  "1.0.0",
+                 "orientation":  "portrait",
+                 "icon":  "./assets/icon.png",
+                 "android":  {
+                                 "adaptiveIcon":  {
+                                                      "backgroundColor":  "#ffffff",
+                                                      "foregroundImage":  "./assets/adaptive-icon.png"
+                                                  },
+                                 "package":  "com.juninmd.dailyaffirmations"
+                             },
+                 "name":  "app-daily-affirmations",
+                 "userInterfaceStyle":  "light",
+                 "splash":  {
+                                "backgroundColor":  "#ffffff",
+                                "resizeMode":  "contain",
+                                "image":  "./assets/splash-icon.png"
+                            }
+             }
+}
