@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#37474f",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    accessibilityRole="header"
+    style={
+      {
+        "color": "#fff",
+        "fontSize": 30,
+        "fontWeight": "bold",
+        "marginBottom": 50,
+      }
+    }
+  >
+    Decision Roulette 🎯
+  </Text>
+  <View
+    style={
+      {
+        "marginBottom": 30,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Roulette wheel"
+      accessibilityRole="image"
+      accessible={true}
+      collapsable={false}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#ff5722",
+          "borderColor": "#fff",
+          "borderRadius": 100,
+          "borderWidth": 5,
+          "height": 200,
+          "justifyContent": "center",
+          "transform": [
+            {
+              "rotate": "0deg",
+            },
+          ],
+          "width": 200,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "fontSize": 80,
+          }
+        }
+      >
+        🎡
+      </Text>
+    </View>
+  </View>
+  <Text
+    accessibilityLiveRegion="polite"
+    accessible={true}
+    style={
+      {
+        "color": "#ffca28",
+        "fontSize": 40,
+        "fontWeight": "bold",
+        "height": 50,
+        "marginBottom": 50,
+      }
+    }
+  >
+    ?
+  </Text>
+  <View
+    accessibilityLabel="Spin the roulette wheel"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#ffca28",
+        "borderRadius": 30,
+        "opacity": 1,
+        "paddingHorizontal": 50,
+        "paddingVertical": 15,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#333",
+          "fontSize": 24,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      SPIN
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "#fff",
+        "borderRadius": 5,
+        "bottom": 20,
+        "padding": 10,
+        "position": "absolute",
+      }
+    }
+  >
+    <Text>
+      [Ad Space]
+    </Text>
+  </View>
+</View>
+`;
