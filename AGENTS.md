@@ -1,25 +1,28 @@
 # Simple Apps
 
-Collection of small Expo/React Native utility apps.
+Monorepo de 14 apps Expo 54 / React Native 0.81 / TypeScript 5.9. Cada `app-*` é independente. Não há `package.json` na raiz.
 
-## Tech Stack
+## Comandos (sempre dentro de `app-<nome>/`)
 
-- **Framework:** Expo 54
-- **UI:** React Native 0.81
-- **Language:** TypeScript 5.9
-- **Testing:** Jest + jest-expo
+- Instalar: `pnpm install` (npm em `app-color-palette`; `app-strobe-light` declara yarn 1.22; sem lockfile em daily-affirmations, hydration-tracker, pomodoro-focus, simple-bmi)
+- Rodar: `pnpm start` (`expo start`)
+- Testes: `pnpm test` (jest / jest-expo), só nos apps que definem o script
+- Lint: `pnpm lint`, só onde existe (daily-affirmations, decision-roulette, morse-code-flasher, pomodoro-focus, reaction-trainer, tip-splitter, zen-breather)
+- Formatar: `pnpm format` (decision-roulette, reaction-trainer, zen-breather)
+- Confira o `scripts` do `package.json` do app antes de assumir um comando.
 
-## Commands
+## Gates de CI
 
-```bash
-cd app-<name>     # Navigate to specific app
-npx expo start    # Start dev server
-npm test          # Run tests
-```
+Só `.github/workflows/` da raiz roda: `validate.yml` (PR/main, reusable do `juninmd/base-actions`: varredura de segredos; os passos Node só rodam com `package.json` na raiz, que não existe, então testes/lint dos apps NÃO rodam no CI) e `security.yml` (main, semanal, manual). Workflows em `app-*/.github/` não executam. Rode testes/lint do app localmente antes do PR.
 
-## Conventions
+## Convenções
 
-- Each app in its own `app-*` directory
-- Independent package.json per app
-- Shared patterns across apps (Expo SDK)
-- TypeScript strict mode
+- Respeite o gerenciador do lockfile do app; não troque.
+- TypeScript estrito; siga o estilo e o AGENTS.md do próprio app.
+- `app-daily-affirmations` usa React Native 0.71 puro, diferente dos demais.
+
+## Não fazer
+
+- Não commitar `.env`, chaves ou segredos.
+- Não editar lockfiles à mão.
+- Não assumir comando na raiz (`npm test` na raiz não existe).
