@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <rect width="1280" height="640" rx="24" fill="#0f172a"/>
+  <text x="640" y="150" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="72" font-weight="700">Simple Apps Collection</text>
+  <text x="640" y="206" text-anchor="middle" fill="#94a3b8" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="32">14 apps Expo / React Native, uma pasta app-* por app</text>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="28" fill="#e2e8f0" text-anchor="middle">
+    <rect x="30" y="250" width="296" height="72" rx="14" fill="#1e293b"/><text x="178" y="296">color-palette</text>
+    <rect x="342" y="250" width="296" height="72" rx="14" fill="#1e293b"/><text x="490" y="296">daily-affirmations</text>
+    <rect x="654" y="250" width="296" height="72" rx="14" fill="#1e293b"/><text x="802" y="296">decision-roulette</text>
+    <rect x="966" y="250" width="296" height="72" rx="14" fill="#1e293b"/><text x="1114" y="296">hydration-tracker</text>
+    <rect x="30" y="336" width="296" height="72" rx="14" fill="#1e293b"/><text x="178" y="382">morse-code-flasher</text>
+    <rect x="342" y="336" width="296" height="72" rx="14" fill="#1e293b"/><text x="490" y="382">pomodoro-focus</text>
+    <rect x="654" y="336" width="296" height="72" rx="14" fill="#1e293b"/><text x="802" y="382">reaction-trainer</text>
+    <rect x="966" y="336" width="296" height="72" rx="14" fill="#1e293b"/><text x="1114" y="382">simple-bmi</text>
+    <rect x="30" y="422" width="296" height="72" rx="14" fill="#1e293b"/><text x="178" y="468">strobe-light</text>
+    <rect x="342" y="422" width="296" height="72" rx="14" fill="#1e293b"/><text x="490" y="468">tally-counter</text>
+    <rect x="654" y="422" width="296" height="72" rx="14" fill="#1e293b"/><text x="802" y="468">tip-splitter</text>
+    <rect x="966" y="422" width="296" height="72" rx="14" fill="#1e293b"/><text x="1114" y="468">unit-converter-pro</text>
+    <rect x="342" y="508" width="296" height="72" rx="14" fill="#1e293b"/><text x="490" y="554">voice-vault</text>
+    <rect x="654" y="508" width="296" height="72" rx="14" fill="#1e293b"/><text x="802" y="554">zen-breather</text>
+  </g>
+</svg>
