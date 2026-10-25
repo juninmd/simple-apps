@@ -26,3 +26,15 @@ Só `.github/workflows/` da raiz roda: `validate.yml` (PR/main, reusable do `jun
 - Não commitar `.env`, chaves ou segredos.
 - Não editar lockfiles à mão.
 - Não assumir comando na raiz (`npm test` na raiz não existe).
+
+<!-- base-actions-main-policy -->
+## GitHub Actions — padrão obrigatório (@main)
+
+- Referencie as actions internas sempre pelo branch, nunca por SHA:
+  - `uses: juninmd/base-actions/<action>@main`
+  - `uses: juninmd/base-actions/.github/workflows/<arquivo>.yml@main`
+- Não fixe `@<sha>` em `juninmd/base-actions`: a atualização é centralizada no
+  `main` e passa a valer no próximo run.
+- PRs cujos checks não iniciam por billing/spending limit são mesclados pelo bot central
+  `juninmd/base-actions/.github/workflows/auto-merge-billing-blocked.yml`.
+  Para impedir o merge automático de um PR, aplique a label `do-not-merge`.
