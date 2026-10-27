@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Slider } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function App() {
   const [isOn, setIsOn] = useState(false);
   const [speed, setSpeed] = useState(500); // ms
   const [activeColor, setActiveColor] = useState('black');
-  const intervalRef = useRef < NodeJS.Timeout | null > (null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const toggle = () => {
     if (isOn) {
@@ -44,9 +44,6 @@ export default function App() {
         </TouchableOpacity>
 
         <Text style={[styles.label, { color: activeColor === 'white' ? 'black' : 'white' }]}>Speed: {speed}ms</Text>
-        <Slider // Note: React Native default Slider might need library, using basic view if failed, but standard has Slider? No, need @react-native-community/slider.
-        // Fallback: Just buttons for speed
-        />
         <View style={styles.speedButtons}>
           <TouchableOpacity style={styles.speedBtn} onPress={() => setSpeed(100)}><Text>Fast</Text></TouchableOpacity>
           <TouchableOpacity style={styles.speedBtn} onPress={() => setSpeed(500)}><Text>Med</Text></TouchableOpacity>
