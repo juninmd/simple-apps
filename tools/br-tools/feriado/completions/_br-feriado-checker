@@ -1,0 +1,13 @@
+#compdef br-feriado-checker
+
+_br_feriado_checker() {
+    local -a opts
+    opts=(
+        '--help[Show help information]'
+        '--version[Show version information]'
+    )
+
+    _describe 'br-feriado-checker' opts
+}
+
+_br_feriado_checker "$@"
