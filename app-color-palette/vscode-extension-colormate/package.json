@@ -1,0 +1,22 @@
+{
+  "name": "colormate",
+  "displayName": "colormate",
+  "description": "Inline color swatches and one-command conversion of the selected color between hex, rgb() and hsl().",
+  "version": "1.0.0",
+  "publisher": "juninmd",
+  "license": "MIT",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "colormate.convert", "title": "colormate: Converter cor selecionada" }
+    ],
+    "keybindings": [
+      { "command": "colormate.convert", "key": "ctrl+alt+k", "when": "editorHasSelection" }
+    ]
+  },
+  "scripts": { "test": "bun test" },
+  "devDependencies": { "@types/bun": "latest" }
+}

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "br-feriado"
+version = "0.1.0"
+description = "Feriados do Brasil (nacionais, estaduais, municipais): lista por ano, verifica uma data, exporta iCal."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Antonio Carlos"}
+]
+keywords = ["holidays", "brazil", "feriados", "cli"]
+
+[project.scripts]
+feriado-br = "feriado_br.cli:main"
+br-feriado-checker = "br_feriado_checker.cli:main"
+[tool.setuptools.packages.find]
+include = ["feriado_br*", "br_feriado_checker*"]

@@ -1,0 +1,22 @@
+{
+  "name": "pixkey-cli",
+  "version": "1.0.0",
+  "description": "A command-line tool for Brazilian developers to validate, generate, and format PIX keys",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "pixkey": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "pix",
+    "pixkey",
+    "evp",
+    "chave-aleatoria",
+    "uuid",
+    "pix-key"
+  ],
+  "license": "MIT"
+}
