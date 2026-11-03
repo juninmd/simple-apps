@@ -71,6 +71,29 @@ pnpm start                         # expo start (também: android, ios, web)
 
 Os scripts da tabela vêm do `package.json` de cada app. Onde não há lockfile, use o gerenciador de sua preferência (o README do app indica o recomendado).
 
+## Ferramentas (`tools/`)
+
+Além dos apps móveis, `tools/` reúne utilitários menores, cada um com README e comandos próprios:
+
+| Pasta | Descrição | Stack |
+|-------|-----------|-------|
+| `tools/br-tools/pixkey-cli` | Valida, gera e formata chaves PIX (CPF, CNPJ, e-mail, telefone e EVP/aleatória) | Node.js |
+| `tools/br-tools/cep-lookup-cli` | Consulta CEP no ViaCEP, em lote e com saída JSON | Python |
+| `tools/br-tools/feriado` | Feriados nacionais, estaduais e municipais, com exportação iCal | Python |
+| `tools/br-tools/br-faker` | Gera dados brasileiros falsos para testes | Python |
+| `tools/minesweep` | Campo minado no navegador, sem dependências | JavaScript |
+| `tools/saude-diaria` | Digest diário de saúde (RSS + IA + Telegram) | Bun/TypeScript |
+
+Exemplo com o Pixkey CLI:
+
+```bash
+cd tools/br-tools/pixkey-cli
+node src/cli.js generate evp
+node src/cli.js validate 123e4567-e89b-12d3-a456-426614174000
+```
+
+As ferramentas não entram no `package.json` da raiz nem no CI; rode os comandos dentro de cada pasta.
+
 ## Como funciona
 
 ```mermaid

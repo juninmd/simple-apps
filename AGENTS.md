@@ -20,6 +20,7 @@ Só `.github/workflows/` da raiz roda: `validate.yml` (PR/main, reusable do `jun
 - Respeite o gerenciador do lockfile do app; não troque.
 - TypeScript estrito; siga o estilo e o AGENTS.md do próprio app.
 - `app-daily-affirmations` usa React Native 0.71 puro, diferente dos demais.
+- `tools/` contém CLIs e experimentos com README próprio (ex.: `tools/br-tools/pixkey-cli`); eles não entram no CI da raiz.
 
 ## Não fazer
 
