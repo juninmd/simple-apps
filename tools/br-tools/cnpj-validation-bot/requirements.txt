@@ -1,0 +1,6 @@
+diskcache>=5.6.3
+redis>=8.1.0
+pytest>=9.2.0
+reportlab>=5.1.0
+python-telegram-bot>=22.8
+pytest-asyncio>=1.4.1.post1

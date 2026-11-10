@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Contribuir com Fato - Brasilidade{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h1>Contribuir com um Fato Cultural</h1>
+        <p>Conhece uma curiosidade, fato histórico ou tradição brasileira? Compartilhe com a nossa comunidade!</p>
+    </div>
+
+    <form action="/contribute" method="POST" class="contribution-form" id="contributionForm">
+        <div class="form-group">
+            <label for="title">Título / Assunto <span class="required">*</span></label>
+            <input type="text" id="title" name="title" required value="{{ form_data.title if form_data else '' }}" placeholder="Ex: A Origem do Açaí, O Significado do Frevo..." class="form-control">
+            <small class="form-help">Um título claro e descritivo para o fato.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Categoria <span class="required">*</span></label>
+            <select id="category" name="category" required class="form-control">
+                <option value="" disabled {% if not form_data or not form_data.category %}selected{% endif %}>Selecione uma categoria...</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}" {% if form_data and form_data.category == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+                <option value="Outro" {% if form_data and form_data.category == 'Outro' %}selected{% endif %}>Outro (Nova Categoria)</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="customCategoryGroup" style="display: none;">
+            <label for="custom_category">Nome da Nova Categoria</label>
+            <input type="text" id="custom_category" name="custom_category" value="{{ form_data.custom_category if form_data else '' }}" placeholder="Ex: Cinema, Literatura, Fauna..." class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Descrição / Fato <span class="required">*</span></label>
+            <textarea id="content" name="content" required rows="5" placeholder="Escreva os detalhes e informações sobre este fato cultural..." class="form-control">{{ form_data.content if form_data else '' }}</textarea>
+            <small class="form-help">Descreva o fato em detalhes (mínimo de 10 caracteres).</small>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-half">
+                <label for="contributor_name">Seu Nome / Apelido</label>
+                <input type="text" id="contributor_name" name="contributor_name" value="{{ form_data.contributor_name if form_data else '' }}" placeholder="Ex: Maria Silva (Opcional)" class="form-control">
+            </div>
+
+            <div class="form-group col-half">
+                <label for="source">Fonte ou Referência</label>
+                <input type="text" id="source" name="source" value="{{ form_data.source if form_data else '' }}" placeholder="Ex: Livro, site, tradição oral (Opcional)" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large">Enviar Contribuição</button>
+            <a href="/" class="btn btn-outline btn-large">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const categorySelect = document.getElementById('category');
+        const customCategoryGroup = document.getElementById('customCategoryGroup');
+        const customCategoryInput = document.getElementById('custom_category');
+
+        function toggleCustomCategory() {
+            if (categorySelect.value === 'Outro') {
+                customCategoryGroup.style.display = 'block';
+                customCategoryInput.required = true;
+            } else {
+                customCategoryGroup.style.display = 'none';
+                customCategoryInput.required = false;
+            }
+        }
+
+        categorySelect.addEventListener('change', toggleCustomCategory);
+        toggleCustomCategory();
+    });
+</script>
+{% endblock %}

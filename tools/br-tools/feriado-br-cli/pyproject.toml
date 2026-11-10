@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "feriado-br-cli"
+version = "0.1.0"
+description = "A command-line tool that lists Brazil's national, state, and municipal holidays for a given year."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Antonio Carlos"}
+]
+keywords = ["holidays", "brazil", "feriados", "cli"]
+
+[project.scripts]
+feriado-br = "feriado_br.cli:main"

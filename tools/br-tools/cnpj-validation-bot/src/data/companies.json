@@ -1,0 +1,26 @@
+[
+  {
+    "cnpj": "12.345.678/0001-95",
+    "company_name": "Tech Solutions LTDA",
+    "trade_name": "TechSolutions",
+    "status": "ACTIVE"
+  },
+  {
+    "cnpj": "98.765.432/0001-10",
+    "company_name": "Inovação e Tecnologia S.A.",
+    "trade_name": "InovaTech",
+    "status": "ACTIVE"
+  },
+  {
+    "cnpj": "11.222.333/0001-44",
+    "company_name": "Padaria & Confeitaria Silva LTDA",
+    "trade_name": "Padaria Silva",
+    "status": "ACTIVE"
+  },
+  {
+    "cnpj": "55.666.777/0001-88",
+    "company_name": "Tech Services do Brasil EIRELI",
+    "trade_name": "TechServices",
+    "status": "ACTIVE"
+  }
+]

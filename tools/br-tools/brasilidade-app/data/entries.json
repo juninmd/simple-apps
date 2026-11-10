@@ -1,0 +1,72 @@
+[
+  {
+    "id": "feijoada",
+    "title": "Feijoada",
+    "category": "Gastronomy",
+    "summary": "A rich stew of black beans, pork cuts, and spices, considered Brazil's national dish.",
+    "description": "Feijoada is a traditional Brazilian dish made from black beans cooked with salted and smoked pork cuts, served typically with rice, collard greens (couve), farofa, and orange slices. It has deep roots in Brazilian history and culture."
+  },
+  {
+    "id": "pao-de-queijo",
+    "title": "Pão de Queijo",
+    "category": "Gastronomy",
+    "summary": "Popular Brazilian cheese bread made with tapioca flour and Minas cheese.",
+    "description": "Originating from Minas Gerais, Pão de Queijo is a chewy, cheesy bread snack made using cassava starch (polvilho) and regional cheese. It is a staple breakfast and snack across Brazil."
+  },
+  {
+    "id": "caipirinha",
+    "title": "Caipirinha",
+    "category": "Gastronomy",
+    "summary": "Brazil's national cocktail made with cachaça, lime, and sugar.",
+    "description": "Caipirinha is a refreshing cocktail crafted from cachaça (sugar cane spirit), muddled lime, and sugar over crushed ice. It originated in rural São Paulo during the early 20th century."
+  },
+  {
+    "id": "samba",
+    "title": "Samba",
+    "category": "Music",
+    "summary": "An iconic genre of music and dance rooted in Afro-Brazilian traditions.",
+    "description": "Samba originated in Afro-Brazilian communities in Bahia and Rio de Janeiro in the early 20th century. Characterized by syncopated rhythms, infectious percussion, and lively dance, it is the heart of Rio's Carnival."
+  },
+  {
+    "id": "bossa-nova",
+    "title": "Bossa Nova",
+    "category": "Music",
+    "summary": "A lyrical fusion of samba and jazz born in Rio de Janeiro in the late 1950s.",
+    "description": "Bossa Nova (meaning 'new trend') emerged in Rio de Janeiro, popularized by artists like João Gilberto, Tom Jobim, and Vinicius de Moraes. Famous songs include 'The Girl from Ipanema'."
+  },
+  {
+    "id": "mpb",
+    "title": "Música Popular Brasileira (MPB)",
+    "category": "Music",
+    "summary": "Post-bossa nova musical movement combining urban folk, pop, and traditional rhythms.",
+    "description": "MPB developed in the mid-1960s, bringing together diverse regional music styles, poetic lyricism, and modern arrangements. Key figures include Elis Regina, Caetano Veloso, and Chico Buarque."
+  },
+  {
+    "id": "independence-day",
+    "title": "Declaration of Independence",
+    "category": "History",
+    "summary": "Brazil declared independence from Portugal on September 7, 1822.",
+    "description": "Prince Pedro proclaimed Brazil's independence on September 7, 1822, by the Ipiranga River with the famous shout 'Independência ou Morte!'. He became Emperor Pedro I of Brazil."
+  },
+  {
+    "id": "proclamation-of-republic",
+    "title": "Proclamation of the Republic",
+    "category": "History",
+    "summary": "The transition from the Empire of Brazil to the First Brazilian Republic in 1889.",
+    "description": "On November 15, 1889, Field Marshal Deodoro da Fonseca led a military coup that deposed Emperor Pedro II and established the Republic of the United States of Brazil."
+  },
+  {
+    "id": "festa-junina",
+    "title": "Festa Junina",
+    "category": "Festivities",
+    "summary": "Traditional midsummer harvest festival celebrated in June with food, music, and dance.",
+    "description": "Festa Junina celebrates Saint John, Saint Anthony, and Saint Peter with countryside attire, quadrilha folk dancing, bonfires, and delicious corn-based delicacies like pamonha and quentão."
+  },
+  {
+    "id": "saudade",
+    "title": "Saudade",
+    "category": "Language",
+    "summary": "A unique Portuguese word expressing deep longing or melancholy for someone or something missed.",
+    "description": "Saudade describes a profound nostalgic longing for a person, place, time, or experience that is absent. It is considered one of the most culturally significant and untranslatable words in Portuguese."
+  }
+]

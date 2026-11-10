@@ -1,0 +1,44 @@
+[
+  {
+    "id": "saudade-meaning",
+    "topic": "Language",
+    "title": "The Meaning of 'Saudade'",
+    "fact": "'Saudade' is a unique Portuguese word that describes a deep nostalgic or melancholic longing for something or someone that is absent, often accompanied by a hope that the missed object will return."
+  },
+  {
+    "id": "festa-junina",
+    "topic": "Culture & Festivals",
+    "title": "Festa Junina",
+    "fact": "Festa Junina (June Festival) is one of Brazil's largest annual celebrations, celebrating Saint John the Baptist, harvest season, countryside traditions, quadrilha dancing, and delicious corn-based treats."
+  },
+  {
+    "id": "amazon-rainforest",
+    "topic": "Geography & Nature",
+    "title": "The Amazon Basin in Brazil",
+    "fact": "Over 60% of the Amazon Rainforest is located in Brazil, hosting one of the most biodiverse ecosystems on Planet Earth with millions of plant, animal, and insect species."
+  },
+  {
+    "id": "bossa-nova",
+    "topic": "Music",
+    "title": "The Birth of Bossa Nova",
+    "fact": "Bossa Nova originated in Rio de Janeiro in the late 1950s, blending traditional Brazilian samba rhythms with sophisticated jazz harmonies, pioneered by artists like João Gilberto, Tom Jobim, and Vinicius de Moraes."
+  },
+  {
+    "id": "feijoada-history",
+    "topic": "Cuisine",
+    "title": "Feijoada: The National Dish",
+    "fact": "Feijoada is considered Brazil's national dish—a rich stew of black beans cooked with pork cuts and sausages, traditionally served with rice, farofa (toasted cassava flour), collard greens, and orange slices."
+  },
+  {
+    "id": "capoeira-art",
+    "topic": "Culture & Martial Arts",
+    "title": "Capoeira: Dance and Martial Art",
+    "fact": "Capoeira is an Afro-Brazilian martial art that combines elements of dance, acrobatics, and music. Developed by enslaved Africans in Brazil, it allowed practitioners to disguise self-defense training as a dance."
+  },
+  {
+    "id": "santos-dumont",
+    "topic": "History & Aviation",
+    "title": "Alberto Santos-Dumont",
+    "fact": "Brazilian aviation pioneer Alberto Santos-Dumont made the world's first public, unassisted powered flight in Paris in 1906 aboard his 14-bis airplane."
+  }
+]

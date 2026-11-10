@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brasilidade - Enciclopédia e Quiz da Cultura Brasileira</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <span class="flag-icon">🇧🇷</span>
+      <span class="logo-title">Brasilidade</span>
+    </div>
+    <nav class="nav-links">
+      <button id="nav-encyclopedia" class="nav-btn active" onclick="switchTab('encyclopedia')">Enciclopédia</button>
+      <button id="nav-quiz" class="nav-btn" onclick="switchTab('quiz')">Modo Quiz 🎯</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- ENCYCLOPEDIA TAB -->
+    <section id="encyclopedia-section" class="tab-content active">
+      <div class="hero">
+        <h1>Enciclopédia de Cultura & História Brasileira</h1>
+        <p>Explore a riqueza das tradições, música, gastronomia e história do Brasil.</p>
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Busque por 'saudade', 'bossa nova', 'feijoada'..." onkeyup="handleSearchKey(event)">
+          <button onclick="performSearch()">Buscar</button>
+        </div>
+      </div>
+
+      <div id="encyclopedia-results" class="cards-grid">
+        <!-- Dynamic Cards -->
+      </div>
+    </section>
+
+    <!-- QUIZ TAB -->
+    <section id="quiz-section" class="tab-content">
+      <div class="quiz-header">
+        <h1>Quiz de Conhecimentos da Brasilidade</h1>
+        <p>Teste seus conhecimentos com perguntas de múltipla escolha!</p>
+      </div>
+
+      <!-- QUIZ SETUP -->
+      <div id="quiz-setup-card" class="card quiz-card">
+        <h2>Configurar Quiz</h2>
+        <div class="form-group">
+          <label for="quiz-category-select">Categoria:</label>
+          <select id="quiz-category-select">
+            <option value="">Todas as Categorias</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quiz-limit-select">Quantidade de Perguntas:</label>
+          <select id="quiz-limit-select">
+            <option value="5">5 Perguntas</option>
+            <option value="8" selected>8 Perguntas</option>
+            <option value="10">10 Perguntas</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-large" onclick="startQuiz()">Iniciar Quiz 🚀</button>
+      </div>
+
+      <!-- QUIZ ACTIVE QUESTION CONTAINER -->
+      <div id="quiz-container" class="card quiz-card hidden">
+        <div class="quiz-progress-bar">
+          <div id="progress-indicator" class="progress-fill" style="width: 0%;"></div>
+        </div>
+        <div class="quiz-info-bar">
+          <span id="quiz-question-counter">Pergunta 1 de 5</span>
+          <span id="quiz-category-badge" class="badge">Categoria</span>
+        </div>
+
+        <h3 id="quiz-question-text" class="question-text">Pergunta...</h3>
+
+        <div id="quiz-options-container" class="options-container">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <div id="quiz-explanation-box" class="explanation-box hidden">
+          <div id="quiz-feedback-title" class="feedback-title"></div>
+          <p id="quiz-explanation-text"></p>
+        </div>
+
+        <div class="quiz-actions">
+          <button id="next-btn" class="btn btn-primary hidden" onclick="nextQuestion()">Próxima Pergunta ➔</button>
+        </div>
+      </div>
+
+      <!-- QUIZ RESULTS RECAP -->
+      <div id="quiz-results-card" class="card quiz-card hidden">
+        <div class="results-header">
+          <span class="trophy-icon">🏆</span>
+          <h2>Resultado do Quiz</h2>
+          <div id="final-score-badge" class="score-badge">100%</div>
+          <p id="final-score-message">Parabéns! Excelente conhecimento!</p>
+        </div>
+
+        <div id="results-details-container" class="results-details">
+          <!-- Detailed answers review -->
+        </div>
+
+        <button class="btn btn-primary btn-large" onclick="resetQuiz()">Jogar Novamente 🔄</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Brasilidade App &copy; 2026 — Celebrando a cultura e história do Brasil.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

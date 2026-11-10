@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brasilidade - Galeria e Enciclopédia Cultural do Brasil</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo">
+        <span class="logo-icon">🇧🇷</span>
+        <div>
+          <h1>Brasilidade</h1>
+          <p class="subtitle">Enciclopédia & Galeria dos Estados Brasileiros</p>
+        </div>
+      </div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Pesquisar por estado, ponto turístico ou cultura..." aria-label="Pesquisar">
+        <button id="searchBtn" aria-label="Buscar">🔍</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h2>Explore a Diversidade do Brasil</h2>
+        <p>Descubra paisagens deslumbrantes, arquitetura histórica e manifestações culturais dos principais estados brasileiros através de nossas galerias de arte.</p>
+      </div>
+    </section>
+
+    <nav class="region-filter-nav" aria-label="Filtro por Região">
+      <button class="filter-btn active" data-region="all">Todos os Estados</button>
+      <button class="filter-btn" data-region="Sudeste">Sudeste</button>
+      <button class="filter-btn" data-region="Nordeste">Nordeste</button>
+      <button class="filter-btn" data-region="Norte">Norte</button>
+      <button class="filter-btn" data-region="Sul">Sul</button>
+      <button class="filter-btn" data-region="Centro-Oeste">Centro-Oeste</button>
+    </nav>
+
+    <div class="state-selector" id="stateSelectorNav">
+      <!-- Dynamically populated state pills -->
+    </div>
+
+    <section class="galleries-container" id="galleriesContainer">
+      <!-- Dynamically populated state galleries -->
+    </section>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="modal" aria-hidden="true" role="dialog">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <div class="modal-content">
+      <div class="modal-image-wrapper" id="modalImageContainer">
+        <!-- SVG Image injected here -->
+      </div>
+      <div class="modal-info">
+        <span class="modal-state-badge" id="modalStateBadge"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <div class="modal-tags" id="modalTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p><strong>Brasilidade App</strong> &bull; Valorizando a cultura, história e a beleza de todas as regiões do Brasil.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

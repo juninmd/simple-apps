@@ -1,0 +1,19 @@
+{
+  "name": "cnpj-checker-cli",
+  "version": "1.0.0",
+  "description": "A command-line tool that validates Brazilian CNPJ numbers, fetches company data from Receita Federal, and surfaces key insights.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "cnpj",
+    "validation",
+    "checker",
+    "brazil",
+    "receita-federal"
+  ],
+  "author": "",
+  "license": "MIT"
+}

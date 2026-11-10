@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Brasilidade - Enciclopédia do Brasil{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Enciclopédia de Cultura, História & Curiosidades</h1>
+    <p>Explore fatos fascinantes sobre o Brasil ou compartilhe seu conhecimento com a comunidade!</p>
+
+    <form action="/" method="GET" class="search-form">
+        <div class="search-input-group">
+            <input type="text" name="q" value="{{ query }}" placeholder="Pesquisar por assunto, história ou palavra-chave..." class="search-input">
+            {% if selected_category %}
+                <input type="hidden" name="category" value="{{ selected_category }}">
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+            {% if query or selected_category %}
+                <a href="/" class="btn btn-outline">Limpar Filtros</a>
+            {% endif %}
+        </div>
+    </form>
+</section>
+
+<section class="categories-filter">
+    <span class="filter-label">Categorias:</span>
+    <a href="{{ url_for('index', q=query) }}" class="category-chip {% if not selected_category or selected_category == 'Todos' %}active{% endif %}">Todos</a>
+    {% for cat in categories %}
+        <a href="{{ url_for('index', category=cat, q=query) }}" class="category-chip {% if selected_category == cat %}active{% endif %}">{{ cat }}</a>
+    {% endfor %}
+</section>
+
+<section class="facts-grid">
+    {% if facts %}
+        {% for fact in facts %}
+            <article class="fact-card">
+                <div class="fact-header">
+                    <span class="category-tag">{{ fact.category }}</span>
+                    <span class="fact-date">{{ fact.created_at[:10] if fact.created_at else '' }}</span>
+                </div>
+                <h2 class="fact-title">{{ fact.title }}</h2>
+                <p class="fact-content">{{ fact.content }}</p>
+                <div class="fact-footer">
+                    {% if fact.contributor_name %}
+                        <span class="fact-author">Contribuição por: <strong>{{ fact.contributor_name }}</strong></span>
+                    {% endif %}
+                    {% if fact.source %}
+                        <span class="fact-source">Fonte: <em>{{ fact.source }}</em></span>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <p>Nenhum fato encontrado para a sua busca.</p>
+            <a href="/contribute" class="btn btn-primary">Seja o primeiro a contribuir com este tema!</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
