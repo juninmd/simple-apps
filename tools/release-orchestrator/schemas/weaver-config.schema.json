@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/release-orchestrator/schemas/weaver-config.schema.json",
+  "title": "CHANGELOG Weaver Configuration",
+  "description": "Configuration schema for CHANGELOG Weaver logic including commit parsing strategies and multi-language section titles.",
+  "type": "object",
+  "required": ["strategy"],
+  "properties": {
+    "strategy": {
+      "type": "string",
+      "enum": ["conventional-commits", "custom-regex"],
+      "default": "conventional-commits",
+      "description": "The commit parsing strategy to use."
+    },
+    "defaultLanguage": {
+      "type": "string",
+      "default": "en",
+      "description": "Default language code for generated CHANGELOG sections (e.g., 'en', 'pt-BR', 'es')."
+    },
+    "customRegex": {
+      "type": "object",
+      "description": "Configuration for the custom-regex strategy. Required if strategy is 'custom-regex'.",
+      "required": ["pattern", "captureGroups"],
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "Regular expression pattern with capture groups to parse commit messages."
+        },
+        "captureGroups": {
+          "type": "object",
+          "required": ["type", "description"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Name or index of the capture group representing the commit category/type."
+            },
+            "scope": {
+              "type": "string",
+              "description": "Name or index of the capture group representing the scope (optional)."
+            },
+            "description": {
+              "type": "string",
+              "description": "Name or index of the capture group representing the commit description."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "typesMap": {
+      "type": "object",
+      "description": "Map of commit types/categories to section titles across supported languages.",
+      "additionalProperties": {
+        "type": "object",
+        "description": "Dictionary of language codes to localized section headers.",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "includeScopes": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to display scopes in CHANGELOG entries."
+    },
+    "groupUnclassified": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to group unclassified/unknown commits into an 'Other Changes' section."
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "strategy": {
+            "const": "custom-regex"
+          }
+        }
+      },
+      "then": {
+        "required": ["customRegex"]
+      }
+    }
+  ]
+}

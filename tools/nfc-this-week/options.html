@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Options & Share Receipt</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-focus: #93c5fd;
+      --border-color: #e2e8f0;
+      --success-bg: #f0fdf4;
+      --success-text: #166534;
+      --info-bg: #eff6ff;
+      --info-text: #1e40af;
+      --warn-bg: #fffbeb;
+      --warn-text: #92400e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .receipt-card {
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .receipt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .store-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .receipt-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    table.items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.95rem;
+    }
+
+    table.items-table th, table.items-table td {
+      padding: 8px 4px;
+      text-align: left;
+    }
+
+    table.items-table th:last-child, table.items-table td:last-child {
+      text-align: right;
+    }
+
+    table.items-table thead {
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    table.items-table tbody tr {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .receipt-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, box-shadow 0.2s;
+    }
+
+    .share-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .share-btn:focus-visible {
+      outline: 3px solid var(--primary-focus);
+      outline-offset: 2px;
+    }
+
+    .status-alert {
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.4;
+    }
+
+    .status-alert.success {
+      display: block;
+      background-color: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-alert.info {
+      display: block;
+      background-color: var(--info-bg);
+      color: var(--info-text);
+      border: 1px solid #bfdbfe;
+    }
+
+    .status-alert.warn {
+      display: block;
+      background-color: var(--warn-bg);
+      color: var(--warn-text);
+      border: 1px solid #fde68a;
+    }
+
+    .details-toggle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    pre.json-preview {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.8rem;
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <header>
+      <h1>Options & Share</h1>
+      <p class="subtitle">Share receipt via Web Share API (WhatsApp, contacts, apps) with attached CSV.</p>
+    </header>
+
+    <section class="receipt-card" aria-label="Receipt preview">
+      <div class="receipt-header">
+        <span class="store-name" id="storeName">Padaria & Mercearia São José</span>
+        <span class="receipt-date" id="receiptDate">2026-11-04</span>
+      </div>
+
+      <table class="items-table" aria-label="Receipt items">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Price</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody id="itemsTableBody">
+          <!-- Filled dynamically by src/options.ts -->
+        </tbody>
+      </table>
+
+      <div class="receipt-total">
+        <span>Total</span>
+        <span id="totalAmount">R$ 48,50</span>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="shareBtn" class="share-btn" aria-label="Share receipt">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </svg>
+        <span>Share Receipt</span>
+      </button>
+
+      <div id="statusAlert" class="status-alert" role="status" aria-live="polite"></div>
+    </div>
+
+    <details class="details-toggle">
+      <summary>View JSON & CSV details</summary>
+      <pre class="json-preview" id="jsonPreview"></pre>
+    </details>
+  </main>
+
+  <script type="module" src="/src/options.ts"></script>
+</body>
+</html>

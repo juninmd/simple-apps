@@ -1,0 +1,50 @@
+{
+  "name": "release-orchestrator",
+  "version": "1.0.0",
+  "description": "Automates release lifecycle with tag watching, publishing, automatic tag rollback, and notification reporting",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:watch": "vitest"
+  },
+  "license": "MIT",
+  "keywords": [
+    "release",
+    "git",
+    "publish",
+    "rollback",
+    "notifier"
+  ],
+  "author": "",
+  "dependencies": {
+    "@octokit/auth-app": "^7.1.5",
+    "@octokit/rest": "^21.1.1",
+    "ajv": "^8.17.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^6.0.2",
+    "jsdom": "^25.0.1",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juninmd/release-orchestrator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juninmd/release-orchestrator/issues"
+  },
+  "homepage": "https://github.com/juninmd/release-orchestrator#readme"
+}

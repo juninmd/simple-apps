@@ -1,0 +1,19 @@
+{
+  "name": "llm-bench",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Placar determinístico dos modelos de um gateway OpenAI-compatible: quem responde, quem acerta, quanto custa.",
+  "bin": {
+    "llm-bench": "src/index.ts"
+  },
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "typescript": "^5.7.3"
+  }
+}

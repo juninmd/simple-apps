@@ -1,0 +1,20 @@
+{
+  "name": "cron-sentinel",
+  "version": "1.0.0",
+  "description": "Self-hosted dead-man's switch for cron jobs. Jobs ping a URL on success; miss the window and it alerts Telegram.",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "test": "bun test"
+  },
+  "keywords": ["healthchecks", "cron", "dead-mans-switch", "heartbeat", "monitoring", "bun", "hono"],
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Dimly lit diner greasy paper receipt",
+    "condition": "low-light, crease folds, kitchen background chatter",
+    "ground_truth": "two eggs over easy with hash browns and coffee total $14.50",
+    "tiny_transcript": "to eggs ever easy with hash brown end cofee total forty 50",
+    "base_transcript": "two eggs over easy with hash browns and coffee total $14.50"
+  },
+  {
+    "id": 2,
+    "name": "Faded thermal supermarket receipt in evening car",
+    "condition": "low-light, thermal fade, AC fan noise",
+    "ground_truth": "organic whole milk 1 gallon cheddar cheese artisan sourdough total $21.80",
+    "tiny_transcript": "organic hole milk one gallon chedder cheese sour dough total 21.80",
+    "base_transcript": "organic whole milk 1 gallon cheddar cheese artisan sourdough total $21.80"
+  },
+  {
+    "id": 3,
+    "name": "Bar tab receipt under neon lighting",
+    "condition": "low-light, neon glare, background music beat",
+    "ground_truth": "craft ipa pint nachos with jalapenos double espresso subtotal $28.00 tax $2.45",
+    "tiny_transcript": "craft i p a pine nachos with halapenos double expresso subtotal 28 text 2.45",
+    "base_transcript": "craft ipa pint nachos with jalapenos double espresso subtotal $28.00 tax $2.45"
+  },
+  {
+    "id": 4,
+    "name": "Crinkled coffee shop thermal receipt in twilight",
+    "condition": "low-light, wrinkled paper, espresso grinder noise",
+    "ground_truth": "iced caramel macchiato oat milk blueberry scone tip $2.00 total $11.75",
+    "tiny_transcript": "ice carmel makiato out milk bluberry scone trip 2.00 total 11.75",
+    "base_transcript": "iced caramel macchiato oat milk blueberry scone tip $2.00 total $11.75"
+  },
+  {
+    "id": 5,
+    "name": "Late night drive-thru fast food receipt",
+    "condition": "low-light, engine hum, radio murmurs",
+    "ground_truth": "quarter pound burger large french fries chocolate shake total $13.25",
+    "tiny_transcript": "water pound burger large fry chocolate snake total 13.25",
+    "base_transcript": "quarter pound burger large french fries chocolate shake total $13.25"
+  },
+  {
+    "id": 6,
+    "name": "Dim bakery counter slip with flour smudges",
+    "condition": "low-light, partial smudge, shop bell chime",
+    "ground_truth": "chocolate croissant bag of almond biscotti cinnamon roll total $16.40",
+    "tiny_transcript": "choclate crossant bag almond biscti cinamon roll total 16 40",
+    "base_transcript": "chocolate croissant bag of almond biscotti cinnamon roll total $16.40"
+  },
+  {
+    "id": 7,
+    "name": "Pharmacy receipt photographed at night",
+    "condition": "low-light, shadows from fingers, fluorescent hum",
+    "ground_truth": "ibuprofen 200mg cough drops saline nasal spray total $19.99",
+    "tiny_transcript": "ibuprofin 200 mg cough drops saline nassal spray total 19.99",
+    "base_transcript": "ibuprofen 200mg cough drops saline nasal spray total $19.99"
+  },
+  {
+    "id": 8,
+    "name": "Parking garage slip under flickering tube lamp",
+    "condition": "low-light, shadow overlay, vehicle exhaust rumble",
+    "ground_truth": "parking entry 18:30 exit 22:15 four hours validated fee $24.00",
+    "tiny_transcript": "barking entry 1830 exit 2215 for hours valid fee 24",
+    "base_transcript": "parking entry 18:30 exit 22:15 four hours validated fee $24.00"
+  },
+  {
+    "id": 9,
+    "name": "Bistro dinner check with pen scribbles",
+    "condition": "low-light, candlelight, wine glass reflection",
+    "ground_truth": "ribeye steak medium rare mashed potatoes sparkling water split 2 ways $45.50 each",
+    "tiny_transcript": "rib eye steak med rare smash potato sparkle water split two way 45.50 each",
+    "base_transcript": "ribeye steak medium rare mashed potatoes sparkling water split 2 ways $45.50 each"
+  },
+  {
+    "id": 10,
+    "name": "Hardware store slip in dark trunk",
+    "condition": "low-light, trunk lamp reflection, street rain noise",
+    "ground_truth": "box drywall screws Phillips head magnetic bit holder duct tape total $32.15",
+    "tiny_transcript": "box dry wall screw philip head magnet bit hold duck tape total 32.15",
+    "base_transcript": "box drywall screws Phillips head magnetic bit holder duct tape total $32.15"
+  }
+]

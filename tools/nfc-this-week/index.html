@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFC This Week - Receipt Bill Splitter</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Pre-mounted empty aria-live polite region for screen reader announcements -->
+    <div
+      id="status-announcer"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    ></div>
+
+    <header class="app-header" role="banner">
+      <div class="header-container">
+        <h1>nfc-this-week</h1>
+        <p class="tagline">Scan the receipt. Split the bill. No typing. No cloud.</p>
+      </div>
+    </header>
+
+    <main id="main-content" class="app-main" role="main" tabindex="-1">
+      <section class="hero-section" aria-labelledby="hero-heading">
+        <h2 id="hero-heading">Instant Receipt Splitter</h2>
+        <p>Hold receipt near your NFC reader or open the bill split popup to review items and calculate shares.</p>
+
+        <div class="action-bar">
+          <button
+            id="open-scanner-btn"
+            type="button"
+            class="primary-btn"
+            aria-haspopup="dialog"
+            aria-controls="receipt-dialog"
+            aria-expanded="false"
+          >
+            Open Receipt Splitter
+          </button>
+        </div>
+      </section>
+
+      <section class="recent-scans-section" aria-labelledby="recent-scans-heading">
+        <h2 id="recent-scans-heading">Quick Information</h2>
+        <ul class="info-list">
+          <li><strong>Keyboard Navigable:</strong> Full keyboard accessibility supporting Tab, Shift+Tab, Enter, Space, and Escape.</li>
+          <li><strong>Screen Reader Ready:</strong> Live region status announcements and explicit ARIA semantics.</li>
+          <li><strong>High Contrast Mode:</strong> Full support for forced-colors high contrast displays.</li>
+          <li><strong>Privacy First:</strong> Local computation only with no external cloud servers.</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Modal Popup Dialog for Receipt Bill Splitting -->
+    <div
+      id="dialog-backdrop"
+      class="dialog-backdrop"
+      hidden
+    >
+      <div
+        id="receipt-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-desc"
+        class="dialog-card"
+        tabindex="-1"
+      >
+        <header class="dialog-header">
+          <h2 id="dialog-title">Receipt Scanner &amp; Splitter</h2>
+          <button
+            id="close-dialog-btn"
+            type="button"
+            class="icon-btn close-btn"
+            aria-label="Close dialog"
+          >
+            &times;
+          </button>
+        </header>
+
+        <p id="dialog-desc" class="dialog-description">
+          Review scanned receipt items, assign participants, and calculate split totals.
+        </p>
+
+        <div class="dialog-body">
+          <!-- Step 1: Scan / Simulate NFC -->
+          <section class="dialog-section" aria-labelledby="nfc-scan-heading">
+            <h3 id="nfc-scan-heading">1. NFC Scan Simulation</h3>
+            <p id="nfc-hint" class="section-hint">Simulate reading an NFC receipt tap locally.</p>
+            <div class="button-group">
+              <button
+                id="scan-receipt-btn"
+                type="button"
+                class="secondary-btn"
+                aria-describedby="nfc-hint"
+              >
+                Scan Receipt
+              </button>
+              <button
+                id="reset-receipt-btn"
+                type="button"
+                class="secondary-btn danger-outline"
+              >
+                Reset Items
+              </button>
+            </div>
+          </section>
+
+          <!-- Step 2: Items List -->
+          <section class="dialog-section" aria-labelledby="items-heading">
+            <h3 id="items-heading">2. Receipt Items</h3>
+            <div id="items-container" class="items-table-container">
+              <table class="receipt-table" aria-label="Receipt items and assigned shares">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Assigned To</th>
+                  </tr>
+                </thead>
+                <tbody id="items-tbody">
+                  <!-- Dynamically populated or default fallback -->
+                  <tr>
+                    <td colspan="3" class="empty-state">No receipt scanned yet. Click "Scan Receipt" to load receipt data.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Step 3: Add Participants -->
+          <section class="dialog-section" aria-labelledby="participants-heading">
+            <h3 id="participants-heading">3. Bill Participants</h3>
+            <form id="add-participant-form" class="inline-form" onsubmit="return false;">
+              <div class="form-field">
+                <label for="participant-name-input">Participant Name</label>
+                <input
+                  type="text"
+                  id="participant-name-input"
+                  name="participantName"
+                  placeholder="e.g. Alice"
+                  aria-describedby="participant-help"
+                  autocomplete="off"
+                />
+              </div>
+              <button
+                id="add-participant-btn"
+                type="button"
+                class="secondary-btn"
+              >
+                Add Person
+              </button>
+            </form>
+            <p id="participant-help" class="field-hint">Enter participant names to split individual item costs.</p>
+
+            <div
+              id="participants-chips"
+              class="chips-container"
+              aria-label="Current bill participants"
+              role="group"
+            >
+              <!-- Participant chips rendered here -->
+            </div>
+          </section>
+
+          <!-- Step 4: Summary -->
+          <section class="dialog-section summary-section" aria-labelledby="summary-heading">
+            <h3 id="summary-heading">4. Split Summary</h3>
+            <div id="summary-content" class="summary-card" aria-live="polite">
+              <p>Scan a receipt and assign participants to see the per-person split breakdown.</p>
+            </div>
+          </section>
+        </div>
+
+        <footer class="dialog-footer">
+          <button
+            id="calculate-split-btn"
+            type="button"
+            class="primary-btn"
+          >
+            Calculate Bill Split
+          </button>
+          <button
+            id="dismiss-dialog-btn"
+            type="button"
+            class="secondary-btn"
+          >
+            Done
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

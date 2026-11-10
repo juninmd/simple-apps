@@ -1,0 +1,19 @@
+{
+  "name": "backup-sentinel",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Copia o SQLite dos pods do cluster e prova que a cópia abre: integrity_check, contagem por tabela e comparação com o snapshot anterior.",
+  "bin": {
+    "backup-sentinel": "src/index.ts"
+  },
+  "scripts": {
+    "start": "bun run src/index.ts run",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "typescript": "^5.7.3"
+  }
+}

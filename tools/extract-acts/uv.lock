@@ -1,0 +1,5 @@
+The file content provided contains only the HEAD version with merge conflict markers. The upstream/master version is empty (only `>>>>>>> upstream/master` with no content after it).
+
+Since there are no actual changes in the upstream/master branch to merge, the correct resolution is to keep the HEAD version as-is.
+
+Here is the resolved file content:

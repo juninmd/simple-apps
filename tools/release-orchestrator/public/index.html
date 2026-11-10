@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release Orchestrator - Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>🚀 Release Orchestrator</h1>
+      <p class="subtitle">Web UI Dashboard</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="config-section">
+      <h2>⚙️ Configuration Status</h2>
+      <div id="config-content" class="grid-cards">
+        <p>Loading configuration...</p>
+      </div>
+    </section>
+
+    <section class="card" id="pending-section">
+      <h2>⏳ Pending Releases</h2>
+      <div id="pending-content">
+        <p>Loading pending releases...</p>
+      </div>
+    </section>
+
+    <section class="card" id="history-section">
+      <h2>📜 Release History</h2>
+      <div id="history-content">
+        <p>Loading release history...</p>
+      </div>
+      <div class="pagination" id="pagination-controls"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
