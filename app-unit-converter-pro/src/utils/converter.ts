@@ -1,6 +1,18 @@
 export type UnitType = 'Length' | 'Weight' | 'Temp' | 'Speed';
 
 /**
+ * Parses user-typed text into a finite number, or NaN. Accepts a comma as
+ * decimal separator (pt-BR keyboards) and a leading minus (needed for Temp);
+ * parseFloat would turn "3,5" into 3 and "5abc" into 5.
+ */
+export const parseInput = (raw: string): number => {
+  const s = raw.trim().replace(',', '.');
+  if (!/^-?(\d+\.?\d*|\.\d+)$/.test(s)) return NaN;
+  const n = Number(s);
+  return Number.isFinite(n) ? n : NaN;
+};
+
+/**
  * Converts a value based on the unit type.
  * Currently supports:
  * - Length: Meters to Feet
@@ -52,7 +64,8 @@ export const getUnitLabel = (type: UnitType, isSource: boolean): string => {
  */
 export const formatConversion = (value: number, type: UnitType): string => {
   const converted = convertValue(value, type);
-  const fixed = converted.toFixed(2);
+  // "+ 0" turns -0 (e.g. -0.001 ft) into 0 so the label never reads "-0.00"
+  const fixed = (Number(converted.toFixed(2)) + 0).toFixed(2);
   const srcLabel = getUnitLabel(type, true);
   const destLabel = getUnitLabel(type, false);
 

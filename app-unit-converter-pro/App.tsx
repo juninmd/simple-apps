@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { formatConversion, UnitType } from './src/utils/converter';
+import { formatConversion, parseInput, UnitType } from './src/utils/converter';
 
 export default function App() {
   const [val, setVal] = useState('');
   const [type, setType] = useState<UnitType>('Length');
 
   const getResult = () => {
-    const n = parseFloat(val);
-    if (isNaN(n)) return '...';
+    const n = parseInput(val);
+    if (Number.isNaN(n)) return '...';
     return formatConversion(n, type);
   };
 
@@ -32,7 +32,7 @@ export default function App() {
         <TextInput
           style={styles.input}
           placeholder="0"
-          keyboardType="numeric"
+          keyboardType={type === 'Temp' ? 'numbers-and-punctuation' : 'numeric'}
           value={val}
           onChangeText={setVal}
         />

@@ -1,4 +1,4 @@
-import { convertValue, formatConversion, UnitType } from '../converter';
+import { convertValue, formatConversion, parseInput, UnitType } from '../converter';
 
 describe('converter utility', () => {
   describe('convertValue', () => {
@@ -47,5 +47,32 @@ describe('converter utility', () => {
     it('formats Speed correctly', () => {
       expect(formatConversion(100, 'Speed')).toBe('100 km/h = 62.14 mph');
     });
+  });
+});
+
+describe('parseInput', () => {
+  it('accepts comma or dot decimals and a leading minus', () => {
+    expect(parseInput('3,5')).toBe(3.5);
+    expect(parseInput('3.5')).toBe(3.5);
+    expect(parseInput('-40')).toBe(-40);
+    expect(parseInput(' .5 ')).toBe(0.5);
+  });
+
+  it('rejects partial, empty or non-finite input instead of truncating it', () => {
+    expect(parseInput('5abc')).toBeNaN();
+    expect(parseInput('1,2,3')).toBeNaN();
+    expect(parseInput('')).toBeNaN();
+    expect(parseInput('-')).toBeNaN();
+    expect(parseInput('9'.repeat(400))).toBeNaN();
+  });
+});
+
+describe('formatConversion edge cases', () => {
+  it('does not print negative zero for tiny negative results', () => {
+    expect(formatConversion(-0.0001, 'Length')).toBe('-0.0001 m = 0.00 ft');
+  });
+
+  it('keeps legitimate negative results', () => {
+    expect(formatConversion(-40, 'Temp')).toBe('-40 °C = -40.00 °F');
   });
 });
