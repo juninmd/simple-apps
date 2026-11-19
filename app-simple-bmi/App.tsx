@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { calculateBmi, BmiResult } from './src/bmi';
 
 export default function App() {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
-  const [bmi, setBmi] = useState < string | null > (null);
-  const [status, setStatus] = useState('');
+  const [result, setResult] = useState<BmiResult | null>(null);
+  const [error, setError] = useState(false);
 
-  const calculateBMI = () => {
+  const calculate = () => {
     Keyboard.dismiss();
-    const h = parseFloat(height) / 100;
-    const w = parseFloat(weight);
-    if (!h || !w) return;
-
-    const val = w / (h * h);
-    setBmi(val.toFixed(1));
-
-    if (val < 18.5) setStatus('Underweight');
-    else if (val < 25) setStatus('Normal');
-    else if (val < 30) setStatus('Overweight');
-    else setStatus('Obese');
+    const next = calculateBmi(height, weight);
+    setResult(next);
+    setError(next === null);
   };
 
   return (
@@ -29,6 +22,7 @@ export default function App() {
       <TextInput
         style={styles.input}
         placeholder="Height (cm)"
+        accessibilityLabel="Height in centimeters"
         keyboardType="numeric"
         value={height}
         onChangeText={setHeight}
@@ -36,19 +30,22 @@ export default function App() {
       <TextInput
         style={styles.input}
         placeholder="Weight (kg)"
+        accessibilityLabel="Weight in kilograms"
         keyboardType="numeric"
         value={weight}
         onChangeText={setWeight}
       />
 
-      <TouchableOpacity style={styles.button} onPress={calculateBMI}>
+      <TouchableOpacity style={styles.button} onPress={calculate} accessibilityRole="button">
         <Text style={styles.buttonText}>Calculate</Text>
       </TouchableOpacity>
 
-      {bmi && (
-        <View style={styles.result}>
-          <Text style={styles.bmiValue}>{bmi}</Text>
-          <Text style={styles.bmiStatus}>{status}</Text>
+      {error && <Text style={styles.error} accessibilityRole="alert">Enter a height and weight greater than zero.</Text>}
+
+      {result && (
+        <View style={styles.result} accessibilityLiveRegion="polite">
+          <Text style={styles.bmiValue}>{result.value}</Text>
+          <Text style={styles.bmiStatus}>{result.status}</Text>
         </View>
       )}
 
@@ -65,6 +62,7 @@ const styles = StyleSheet.create({
   input: { width: '80%', height: 50, backgroundColor: '#fff', borderRadius: 8, paddingHorizontal: 15, marginBottom: 15, fontSize: 16, elevation: 1 },
   button: { width: '80%', height: 50, backgroundColor: '#4CAF50', borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginTop: 10, elevation: 2 },
   buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+  error: { marginTop: 20, color: '#b00020', fontSize: 16 },
   result: { marginTop: 40, alignItems: 'center' },
   bmiValue: { fontSize: 48, fontWeight: 'bold', color: '#333' },
   bmiStatus: { fontSize: 20, color: '#666', marginTop: 5 },

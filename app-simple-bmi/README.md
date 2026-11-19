@@ -1,35 +1,29 @@
-```markdown
 # app-simple-bmi
 
-**A standard software project.**
+Calculadora de IMC (índice de massa corporal) em Expo / React Native: informe altura em cm e peso em kg e veja o valor com a faixa (Underweight, Normal, Overweight, Obese).
 
-**Installation:**
+## Como rodar
 
-1.  Clone the repository: `git clone https://github.com/your-username/app-simple-bmi.git`
-2.  Navigate to the project directory: `cd app-simple-bmi`
-3.  Install dependencies: `npm install`
+Requisitos: Node.js 22 e um dispositivo com Expo Go (ou emulador). Não há lockfile nesta pasta.
 
-**Usage:**
-
-*   **Configuration:**  The project uses a `app.json` file for configuration.  The `app.json` file defines the project's settings, including:
-    *   `model`:  The model to use (default: "LinearRegression").
-    *   `learning_rate`: The learning rate for the model.
-    *   `epochs`: The number of epochs for training.
-    *   `save_interval`: How often to save the model.
-*   **Data Loading:** The `App.tsx` file handles data loading and processing.  The project assumes a CSV file named 'data.csv' in the `assets` directory for example data. You'll need to adapt the data loading section based on your chosen data source.
-*   **Model Training:**  The `index.js` file contains the core model training logic.  You'll need to create a data file (e.g., 'data.csv') and then call the `train()` function from `index.js`.
-*   **Prediction:** The `App.tsx` file contains the prediction logic.  Call the `predict()` function from `App.tsx` with the loaded data.
-*   **Visualization:**  The `assets` directory contains images to visualize the model.
-*   **Testing:**  You can run tests using `npm test`.
-
-**Files:**
-
-*   `.github` - Source code repository.
-*   `.gitignore` - Standard Git ignore file.
-*   `App.tsx` -  Main application component.
-*   `app.json` - Configuration file.
-*   `assets` -  Images for visualization.
-*   `index.js` - Core model training logic.
-*   `package.json` - Project metadata and dependencies.
-*   `tsconfig.json` -  TypeScript configuration.
+```bash
+cd app-simple-bmi
+npm install
+npm start          # expo start; também: npm run android | ios | web
 ```
+
+## Como funciona
+
+- `App.tsx`: tela com os dois campos, o botão **Calculate** e o resultado.
+- `src/bmi.ts`: `calculateBmi(heightCm, weightKg)`, `peso / (altura em m)²` com uma casa decimal. Aceita vírgula decimal (por exemplo `70,5`) e devolve `null` para valores vazios, zero, negativos ou não numéricos (a tela mostra um aviso).
+
+| IMC | Faixa |
+|---|---|
+| < 18.5 | Underweight |
+| 18.5 a < 25 | Normal |
+| 25 a < 30 | Overweight |
+| >= 30 | Obese |
+
+O banner "[Ad: Healthy Diet Plans]" é apenas um espaço reservado de exemplo.
+
+Não há testes automatizados nesta pasta.
