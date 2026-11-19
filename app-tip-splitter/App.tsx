@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   Platform
 } from 'react-native';
-import { calculateTip, TipResult } from './src/logic';
+import { calculateTip, parseAmount, TipResult } from './src/logic';
 
 export default function App() {
   const [bill, setBill] = useState('');
@@ -22,7 +22,7 @@ export default function App() {
 
   const calculate = () => {
     Keyboard.dismiss();
-    const b = parseFloat(bill);
+    const b = parseAmount(bill);
     const res = calculateTip(b, tipPct, people);
     setResult(res);
   };
