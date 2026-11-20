@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
+import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import App from './App';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -125,6 +125,40 @@ describe('App', () => {
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalledWith('Failed to save counters', expect.any(Error));
     });
+    consoleSpy.mockRestore();
+  });
+
+  it('counts every tap when two land before a re-render', async () => {
+    const { findByText, getByText, getByLabelText } = render(<App />);
+    await findByText('Tally Counter 🔢');
+
+    const incrementBtn = getByLabelText('Increment count');
+    act(() => {
+      fireEvent.press(incrementBtn);
+      fireEvent.press(incrementBtn);
+    });
+
+    expect(getByText('2')).toBeTruthy();
+  });
+
+  it('keeps counting when the saved counters no longer include id 1', async () => {
+    const savedData = JSON.stringify([{ id: 3, name: 'Laps', count: 7 }]);
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValue(savedData);
+    const { findByDisplayValue, getByText, getByLabelText } = render(<App />);
+    await findByDisplayValue('Laps');
+
+    fireEvent.press(getByLabelText('Increment count'));
+
+    expect(getByText('8')).toBeTruthy();
+  });
+
+  it('falls back to the default counter when storage holds something else', async () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValue('{"not":"a list"}');
+    const { findByDisplayValue, getByText } = render(<App />);
+
+    await findByDisplayValue('Default');
+    expect(getByText('0')).toBeTruthy();
     consoleSpy.mockRestore();
   });
 });

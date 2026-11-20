@@ -11,6 +11,15 @@ interface Counter {
   count: number;
 }
 
+const isCounterList = (value: unknown): value is Counter[] =>
+  Array.isArray(value) &&
+  value.length > 0 &&
+  value.every(
+    c =>
+      typeof c === 'object' && c !== null &&
+      Number.isInteger(c.id) && typeof c.name === 'string' && Number.isFinite(c.count),
+  );
+
 /**
  * Main App Component
  *
@@ -31,7 +40,12 @@ export default function App() {
         const jsonValue = await AsyncStorage.getItem(STORAGE_KEY);
         if (jsonValue != null) {
           const loadedCounters = JSON.parse(jsonValue);
+          if (!isCounterList(loadedCounters)) throw new Error('Stored counters are not a counter list');
           setCounters(loadedCounters);
+          // The default active id (1) may be gone: taps would update nothing while counters[0] is shown.
+          setActiveId(current =>
+            loadedCounters.some(c => c.id === current) ? current : loadedCounters[0].id,
+          );
         }
       } catch (e) {
         console.error('Failed to load counters', e);
@@ -60,12 +74,13 @@ export default function App() {
   const decrement = () => updateCount(-1);
 
   const updateCount = (val: number) => {
-    setCounters(counters.map(c => c.id === activeId ? { ...c, count: c.count + val } : c));
+    // Functional update: two taps inside one render must both count.
+    setCounters(prev => prev.map(c => (c.id === activeId ? { ...c, count: c.count + val } : c)));
   };
 
   const addCounter = () => {
     const newId = (counters.length > 0 ? Math.max(...counters.map(c => c.id)) : 0) + 1;
-    setCounters([...counters, { id: newId, name: `Counter ${newId}`, count: 0 }]);
+    setCounters(prev => [...prev, { id: newId, name: `Counter ${newId}`, count: 0 }]);
     setActiveId(newId);
   };
 
@@ -86,7 +101,7 @@ export default function App() {
         <TextInput
           style={styles.nameInput}
           value={activeCounter.name}
-          onChangeText={(txt) => setCounters(counters.map(c => c.id === activeId ? { ...c, name: txt } : c))}
+          onChangeText={(txt) => setCounters(prev => prev.map(c => (c.id === activeId ? { ...c, name: txt } : c)))}
           accessibilityLabel="Counter Name"
           accessibilityHint="Edit the name of the current counter"
         />
