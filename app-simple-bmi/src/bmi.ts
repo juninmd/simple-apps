@@ -9,7 +9,8 @@ export function calculateBmi(heightCm: string, weightKg: string): BmiResult | nu
   const w = toNumber(weightKg);
   if (!Number.isFinite(h) || !Number.isFinite(w) || h <= 0 || w <= 0) return null;
 
-  const val = w / (h * h);
+  // Classify the value the user sees: 24.96 is shown as "25.0" and must read Overweight, not Normal.
+  const val = Math.round((w / (h * h)) * 10) / 10;
   const status = val < 18.5 ? 'Underweight' : val < 25 ? 'Normal' : val < 30 ? 'Overweight' : 'Obese';
   return { value: val.toFixed(1), status };
 }
