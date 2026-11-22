@@ -1,0 +1,3 @@
+# Agent output and logs
+*.log
+.jules/
