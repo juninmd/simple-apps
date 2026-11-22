@@ -1,4 +1,4 @@
-import { textToMorse, generateMorseEvents } from '../morse';
+import { textToMorse, generateMorseEvents, transmissionProblem } from '../morse';
 
 describe('Morse Utility', () => {
   it('converts text to morse string', () => {
@@ -79,6 +79,22 @@ describe('Morse Utility', () => {
       { on: true, duration: 100 },
       { on: false, duration: 0 }
     ]);
+  });
+});
+
+describe('transmissionProblem', () => {
+  it('refuses text with no transmittable character instead of reporting success', () => {
+    // '¿¡' produced only the closing off-event, and the app said "Message sent successfully."
+    expect(generateMorseEvents('¿¡').some(e => e.on)).toBe(false);
+    expect(transmissionProblem('¿¡')).toMatch(/No transmittable/);
+  });
+
+  it('asks for text when the input is blank', () => {
+    expect(transmissionProblem('   ')).toMatch(/enter some text/);
+  });
+
+  it('accepts text with at least one known character', () => {
+    expect(transmissionProblem('¿sos')).toBeNull();
   });
 });
 

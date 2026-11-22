@@ -74,3 +74,10 @@ export function generateMorseEvents(text: string, unit: number = 200): MorseEven
   }
   return events;
 }
+
+/** Why `text` cannot be sent, or null when at least one character has a Morse code. */
+export function transmissionProblem(text: string): string | null {
+  if (!text.trim()) return 'Please enter some text to transmit.';
+  if (!generateMorseEvents(text).some(e => e.on)) return 'No transmittable characters: use letters, numbers or punctuation.';
+  return null;
+}

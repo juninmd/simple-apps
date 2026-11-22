@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { generateMorseEvents, textToMorse } from './src/utils/morse';
+import { generateMorseEvents, textToMorse, transmissionProblem } from './src/utils/morse';
 
 export default function App() {
   const [text, setText] = useState('');
@@ -41,8 +41,9 @@ export default function App() {
       }
     }
 
-    if (!text.trim()) {
-        Alert.alert("Input Required", "Please enter some text to transmit.");
+    const problem = transmissionProblem(text);
+    if (problem) {
+        Alert.alert("Input Required", problem);
         return;
     }
 
