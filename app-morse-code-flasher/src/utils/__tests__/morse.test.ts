@@ -81,3 +81,17 @@ describe('Morse Utility', () => {
     ]);
   });
 });
+
+describe('Portuguese text', () => {
+  it('transmits accented letters as their base letter instead of dropping them', () => {
+    expect(textToMorse('café')).toBe('-.-. .- ..-. .');
+    expect(textToMorse('AÇÃO')).toBe('.- -.-. .- ---');
+    expect(generateMorseEvents('é', 100)).toEqual(generateMorseEvents('e', 100));
+  });
+
+  it('transmits standard ITU punctuation', () => {
+    expect(textToMorse('Oi!')).toBe('--- .. -.-.--');
+    expect(textToMorse('ok?')).toBe('--- -.- ..--..');
+    expect(textToMorse('a,b.')).toBe('.- --..-- -... .-.-.-');
+  });
+});
