@@ -1,9 +1,24 @@
 export const MORSE_CODE: Record<string, string> = {
-  'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ' ': '/'
+  'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ' ': '/',
+  // ITU-R M.1677-1 punctuation
+  '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.', ')': '-.--.-',
+  '&': '.-...', ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-', '"': '.-..-.',
+  '@': '.--.-.'
 };
 
+// Morse has no accented letters: send the base letter instead of silently dropping it.
+// Explicit map rather than String.normalize, which is not guaranteed on every Hermes build.
+const BASE_LETTER: Record<string, string> = {
+  'Á': 'A', 'À': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'É': 'E', 'È': 'E', 'Ê': 'E', 'Ë': 'E',
+  'Í': 'I', 'Ì': 'I', 'Î': 'I', 'Ï': 'I', 'Ó': 'O', 'Ò': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö': 'O',
+  'Ú': 'U', 'Ù': 'U', 'Û': 'U', 'Ü': 'U', 'Ç': 'C', 'Ñ': 'N'
+};
+
+const toMorseAlphabet = (text: string): string =>
+  text.toUpperCase().replace(/[ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇÑ]/g, c => BASE_LETTER[c]);
+
 export function textToMorse(text: string): string {
-  return text.toUpperCase().split('').map(c => MORSE_CODE[c] || '').join(' ').trim();
+  return toMorseAlphabet(text).split('').map(c => MORSE_CODE[c] || '').join(' ').trim();
 }
 
 export type MorseEvent = {
@@ -15,7 +30,7 @@ export function generateMorseEvents(text: string, unit: number = 200): MorseEven
   const events: MorseEvent[] = [];
   // Remove non-morse characters (except spaces) for safety?
   // Current logic ignores unknown chars inside words, but split handles spaces.
-  const words = text.toUpperCase().trim().split(/\s+/);
+  const words = toMorseAlphabet(text).trim().split(/\s+/);
 
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
@@ -63,6 +78,6 @@ export function generateMorseEvents(text: string, unit: number = 200): MorseEven
 /** Why `text` cannot be sent, or null when at least one character has a Morse code. */
 export function transmissionProblem(text: string): string | null {
   if (!text.trim()) return 'Please enter some text to transmit.';
-  if (!generateMorseEvents(text).some(e => e.on)) return 'No transmittable characters: use letters, numbers or spaces.';
+  if (!generateMorseEvents(text).some(e => e.on)) return 'No transmittable characters: use letters, numbers or punctuation.';
   return null;
 }
